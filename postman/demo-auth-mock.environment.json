@@ -1,0 +1,39 @@
+{
+  "id": "a9f64cd5-d6df-4f8c-bf07-43eb81024414",
+  "name": "demo-auth-mock",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://replace-after-mock-creation.mock.pstmn.io",
+      "enabled": true
+    },
+    {
+      "key": "demoEmail",
+      "value": "demo@example.com",
+      "enabled": true
+    },
+    {
+      "key": "demoPassword",
+      "value": "demo123",
+      "enabled": true
+    },
+    {
+      "key": "demoToken",
+      "value": "demo-token-123",
+      "enabled": true
+    },
+    {
+      "key": "demoSessionId",
+      "value": "ANY",
+      "enabled": true
+    },
+    {
+      "key": "authApplicationName",
+      "value": "demo-app",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2026-02-18T00:00:00.000Z",
+  "_postman_exported_using": "Codex"
+}

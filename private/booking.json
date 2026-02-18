@@ -1,0 +1,508 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Booking System API – Accommodation Module",
+    "version": "1.2",
+    "description": "Project House - API for managing accommodations, availability, reservations, and rate plans."
+  },
+  "servers": [
+    {
+      "url": "https://{service-domain}",
+      "variables": {
+        "service-domain": {
+          "default": "example.com",
+          "description": "API service domain"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication and session token endpoints used to access protected booking operations."
+    },
+    {
+      "name": "Accommodation",
+      "description": "Browse and retrieve accommodation entities by list, identifier, or business code, including localized content."
+    },
+    {
+      "name": "Availability",
+      "description": "Read and update day-level availability status for accommodations across requested date ranges."
+    },
+    {
+      "name": "Reservations",
+      "description": "Retrieve reservation records for a specific accommodation and filter by supported request criteria."
+    },
+    {
+      "name": "Rates",
+      "description": "Manage base rate plans and retrieve configured rate plans for pricing and distribution workflows."
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Authentication",
+      "tags": ["Auth"]
+    },
+    {
+      "name": "Booking Operations",
+      "tags": ["Accommodation", "Availability", "Reservations", "Rates"]
+    }
+  ],
+  "paths": {
+    "/api/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login",
+        "description": "Returns an access token for a valid user account.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/LoginResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/getaccommodationlist": {
+      "post": {
+        "tags": ["Accommodation"],
+        "summary": "Get accommodation list",
+        "description": "Returns accommodations accessible with the provided token. Optional locale can be sent to localize text fields.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TokenLocaleRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accommodation list",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetAccommodationListResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/getaccommodation": {
+      "post": {
+        "tags": ["Accommodation"],
+        "summary": "Get accommodation by ID",
+        "description": "Returns a full accommodation payload for a single accommodation ID.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GetAccommodationByIdRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accommodation details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetAccommodationResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/getaccommodationbycode": {
+      "post": {
+        "tags": ["Accommodation"],
+        "summary": "Get accommodation by code",
+        "description": "Returns a full accommodation payload for a single accommodation business code.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GetAccommodationByCodeRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accommodation details",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetAccommodationResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/getavailability": {
+      "post": {
+        "tags": ["Availability"],
+        "summary": "Get availability",
+        "description": "Returns availability data for the requested accommodation and date scope.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GetAvailabilityRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Availability response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetAvailabilityResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/updateavailability": {
+      "post": {
+        "tags": ["Availability"],
+        "summary": "Update availability",
+        "description": "Applies availability changes and returns a boolean operation result.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateAvailabilityRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BooleanResultResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/getaccommodationreservationlist": {
+      "post": {
+        "tags": ["Reservations"],
+        "summary": "Get accommodation reservation list",
+        "description": "Returns reservation entries for the specified accommodation based on request filters.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GetReservationListRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reservation list",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetReservationListResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/updatebaserateplan": {
+      "post": {
+        "tags": ["Rates"],
+        "summary": "Update base rate plan",
+        "description": "Updates base rate plan values and returns whether the operation succeeded.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UpdateBaseRatePlanRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BooleanResultResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/getrateplans": {
+      "post": {
+        "tags": ["Rates"],
+        "summary": "Get rate plans",
+        "description": "Returns configured rate plans and related metadata for the requested accommodation.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GetRatePlansRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Rate plans",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GetRatePlansResponse" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "LoginRequest": {
+        "type": "object",
+        "required": ["username", "password"],
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "LoginResult": { "type": "string" }
+        }
+      },
+
+      "TokenLocaleRequest": {
+        "type": "object",
+        "required": ["token"],
+        "properties": {
+          "token": { "type": "string" },
+          "locale": { "type": "string", "example": "en" }
+        }
+      },
+
+      "GetAccommodationByIdRequest": {
+        "type": "object",
+        "required": ["token", "accommodationId"],
+        "properties": {
+          "token": { "type": "string" },
+          "accommodationId": { "type": "integer" },
+          "locale": { "type": "string" }
+        }
+      },
+
+      "GetAccommodationByCodeRequest": {
+        "type": "object",
+        "required": ["token", "code"],
+        "properties": {
+          "token": { "type": "string" },
+          "code": { "type": "string" },
+          "locale": { "type": "string" }
+        }
+      },
+
+      "GetAccommodationListResponse": {
+        "type": "object",
+        "properties": {
+          "GetAccommodationListResult": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AccommodationBasicResponse" }
+          }
+        }
+      },
+
+      "GetAccommodationResponse": {
+        "type": "object",
+        "properties": {
+          "GetAccommodationResult": {
+            "$ref": "#/components/schemas/AccommodationFullResponse"
+          }
+        }
+      },
+
+      "AccommodationBasicResponse": {
+        "type": "object",
+        "properties": {
+          "Id": { "type": "integer" },
+          "Code": { "type": "string" },
+          "Name": { "type": "string" },
+          "Bedrooms": { "type": "integer" },
+          "Bathrooms": { "type": "integer" },
+          "GuestCapacity": { "type": "integer" },
+          "SquareMeters": { "type": "integer" },
+          "Latitude": { "type": "string" },
+          "Longitude": { "type": "string" }
+        },
+        "additionalProperties": true
+      },
+
+      "AccommodationFullResponse": {
+        "type": "object",
+        "description": "Full accommodation object",
+        "additionalProperties": true
+      },
+
+      "GetAvailabilityRequest": {
+        "type": "object",
+        "required": ["token", "scopeId", "scope", "dateStart", "dateEnd"],
+        "properties": {
+          "token": { "type": "string" },
+          "scopeId": { "type": "integer" },
+          "scope": { "type": "integer", "example": 0 },
+          "dateStart": { "type": "string", "format": "date" },
+          "dateEnd": { "type": "string", "format": "date" }
+        }
+      },
+
+      "GetAvailabilityResponse": {
+        "type": "object",
+        "properties": {
+          "GetAvailabilityResult": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+
+      "UpdateAvailabilityRequest": {
+        "type": "object",
+        "required": ["token", "scopeId", "scope"],
+        "properties": {
+          "token": { "type": "string" },
+          "scopeId": { "type": "integer" },
+          "scope": { "type": "integer" },
+          "blockRequests": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/BlockRequest" }
+          }
+        }
+      },
+
+      "BlockRequest": {
+        "type": "object",
+        "properties": {
+          "DateStart": { "type": "string", "format": "date" },
+          "DateEnd": { "type": "string", "format": "date" },
+          "Name": { "type": "string" }
+        }
+      },
+
+      "BooleanResultResponse": {
+        "type": "object",
+        "properties": {
+          "UpdateAvailabilityResult": { "type": "boolean" },
+          "UpdateBaseRatePlanResult": { "type": "boolean" }
+        },
+        "additionalProperties": true
+      },
+
+      "GetReservationListRequest": {
+        "type": "object",
+        "required": ["token", "accommodationId", "confirmedOnly"],
+        "properties": {
+          "token": { "type": "string" },
+          "accommodationId": { "type": "integer" },
+          "confirmedOnly": { "type": "boolean" }
+        }
+      },
+
+      "GetReservationListResponse": {
+        "type": "object",
+        "properties": {
+          "GetAccommodationReservationListResult": {
+            "type": "array",
+            "items": { "type": "object", "additionalProperties": true }
+          }
+        }
+      },
+
+      "UpdateBaseRatePlanRequest": {
+        "type": "object",
+        "required": ["token", "scopeId", "scope"],
+        "properties": {
+          "token": { "type": "string" },
+          "scopeId": { "type": "integer" },
+          "scope": { "type": "integer" },
+          "ratePeriods": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/RatePeriodRequest" }
+          },
+          "rateRules": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/RateRuleRequest" }
+          }
+        }
+      },
+
+      "RatePeriodRequest": {
+        "type": "object",
+        "properties": {
+          "DateStart": { "type": "string", "format": "date" },
+          "DateEnd": { "type": "string", "format": "date" },
+          "Price": { "type": "number" }
+        }
+      },
+
+      "RateRuleRequest": {
+        "type": "object",
+        "properties": {
+          "RuleType": { "type": "integer" },
+          "MinValue": { "type": "number" },
+          "MaxValue": { "type": "number" },
+          "AdditionalAmount": { "type": "number" }
+        }
+      },
+
+      "GetRatePlansRequest": {
+        "type": "object",
+        "required": ["token", "scopeId", "scope", "dateStart", "dateEnd"],
+        "properties": {
+          "token": { "type": "string" },
+          "scopeId": { "type": "integer" },
+          "scope": { "type": "integer" },
+          "dateStart": { "type": "string", "format": "date" },
+          "dateEnd": { "type": "string", "format": "date" }
+        }
+      },
+
+      "GetRatePlansResponse": {
+        "type": "object",
+        "properties": {
+          "GetRatePlansResult": {
+            "type": "array",
+            "items": { "type": "object", "additionalProperties": true }
+          }
+        }
+      }
+    }
+  }
+}

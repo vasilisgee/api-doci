@@ -1,0 +1,258 @@
+{
+  "info": {
+    "_postman_id": "3a2a67af-0f24-4f54-b5bf-56f6dd9e7f95",
+    "name": "demo-auth-mock",
+    "description": "Reusable demo auth mock endpoints for login flows. For strict demo-only login, enable request-body matching in Postman mock settings.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST /login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{demoEmail}}\",\n  \"password\": \"{{demoPassword}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "login"
+          ]
+        },
+        "description": "Returns a token accepted by the app auth adapter."
+      },
+      "response": [
+        {
+          "name": "200 OK - login success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{demoEmail}}\",\n  \"password\": \"{{demoPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"token\": \"{{demoToken}}\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "POST /GetLoggedUser",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"{{demoToken}}\",\n  \"sessionId\": \"{{demoSessionId}}\",\n  \"applicationName\": \"{{authApplicationName}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/GetLoggedUser",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "GetLoggedUser"
+          ]
+        },
+        "description": "Optional for app login success, but useful to populate top-bar name/email."
+      },
+      "response": [
+        {
+          "name": "200 OK - user payload",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{demoToken}}\",\n  \"sessionId\": \"{{demoSessionId}}\",\n  \"applicationName\": \"{{authApplicationName}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/GetLoggedUser",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "GetLoggedUser"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"GetLoggedUserResult\": {\n    \"FullName\": \"Demo User\",\n    \"Email\": \"demo@example.com\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "POST /LogoutUser",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"{{demoToken}}\",\n  \"sessionId\": \"{{demoSessionId}}\",\n  \"applicationName\": \"{{authApplicationName}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/LogoutUser",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "LogoutUser"
+          ]
+        },
+        "description": "Logout endpoint used by the app. Local session clears even if this fails."
+      },
+      "response": [
+        {
+          "name": "200 OK - logout success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{demoToken}}\",\n  \"sessionId\": \"{{demoSessionId}}\",\n  \"applicationName\": \"{{authApplicationName}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/LogoutUser",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "LogoutUser"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"ok\": true\n}"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://replace-after-mock-creation.mock.pstmn.io"
+    },
+    {
+      "key": "demoEmail",
+      "value": "demo@example.com"
+    },
+    {
+      "key": "demoPassword",
+      "value": "demo123"
+    },
+    {
+      "key": "demoToken",
+      "value": "demo-token-123"
+    },
+    {
+      "key": "demoSessionId",
+      "value": "ANY"
+    },
+    {
+      "key": "authApplicationName",
+      "value": "demo-app"
+    }
+  ]
+}

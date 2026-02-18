@@ -1,0 +1,726 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --app-bg: #080f1a;
+  --app-surface: #111827;
+  --app-border: #2d3c52;
+  --app-text: #e2e8f0;
+  --app-muted: #9aa8bd;
+  --app-accent: #7ed957;
+  --app-topbar-height: 62px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: "Inter", sans-serif;
+  background: #ffffff;
+}
+
+.back-to-top {
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.98),
+    rgba(15, 23, 42, 0.98)
+  );
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  color: #e2e8f0;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 18px;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  transform: translateY(8px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+  width: 36px;
+  z-index: 1200;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  border-color: #6ebe45;
+  color: #9be66e;
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid #7ed957;
+  outline-offset: 2px;
+}
+
+.login-screen {
+  min-height: 100dvh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--app-text);
+  background:
+    radial-gradient(
+      1200px 600px at 10% -10%,
+      rgba(126, 217, 87, 0.12),
+      transparent 45%
+    ),
+    radial-gradient(
+      900px 500px at 100% 0%,
+      rgba(56, 189, 248, 0.08),
+      transparent 44%
+    ),
+    var(--app-bg);
+}
+
+.login-card {
+  width: min(460px, 100%);
+  border: 1px solid var(--app-border);
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.97) 0%,
+    rgba(9, 14, 24, 0.97) 100%
+  );
+  border-radius: 18px;
+  box-shadow:
+    0 20px 70px rgba(2, 8, 23, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+}
+
+.login-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.app-topbar {
+  position: relative;
+  z-index: 10;
+  height: var(--app-topbar-height);
+  border-bottom: 1px solid rgba(71, 85, 105, 0.35);
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.98),
+    rgba(15, 23, 42, 0.98)
+  );
+  backdrop-filter: blur(10px);
+}
+
+.app-main {
+  min-height: calc(100dvh - var(--app-topbar-height));
+  padding-top: 0;
+}
+
+#redoc-container {
+  display: block;
+  min-height: calc(100dvh - var(--app-topbar-height));
+  font-family: "Inter", sans-serif;
+}
+
+#redoc-container pre,
+#redoc-container code,
+#redoc-container kbd,
+#redoc-container samp {
+  font-family:
+    "JetBrains Mono",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace !important;
+}
+#redoc-container pre{
+  border-radius: 10px;
+}
+#redoc-container .api-logo {
+  display: none !important;
+}
+
+#redoc-container .menu-content img[alt="logo"],
+#redoc-container .menu-content img[src*="logo"],
+#redoc-container .menu-content img[src*="elorus-logo-api"] {
+  display: none !important;
+}
+
+#redoc-container .menu-content a:has(> img[alt="logo"]),
+#redoc-container .menu-content div:has(> img[alt="logo"]),
+#redoc-container .menu-content div:has(> img[src*="elorus-logo-api"]) {
+  display: none !important;
+}
+
+#redoc-container .menu-content {
+  padding-top: 14px !important;
+}
+
+#redoc-container
+  .menu-content
+  :is(
+    div:has(> ul[role="menu"]),
+    div[style*="overflow: auto"][style*="overscroll-behavior: contain"],
+    div[style*="overflow:auto"][style*="overscroll-behavior: contain"]
+  ) {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126, 217, 87, 0.6) rgba(15, 23, 42, 0.75);
+}
+
+#redoc-container
+  .menu-content
+  :is(
+    div:has(> ul[role="menu"]),
+    div[style*="overflow: auto"][style*="overscroll-behavior: contain"],
+    div[style*="overflow:auto"][style*="overscroll-behavior: contain"]
+  )::-webkit-scrollbar {
+  width: 10px;
+}
+
+#redoc-container
+  .menu-content
+  :is(
+    div:has(> ul[role="menu"]),
+    div[style*="overflow: auto"][style*="overscroll-behavior: contain"],
+    div[style*="overflow:auto"][style*="overscroll-behavior: contain"]
+  )::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.75);
+  border-radius: 999px;
+}
+
+#redoc-container
+  .menu-content
+  :is(
+    div:has(> ul[role="menu"]),
+    div[style*="overflow: auto"][style*="overscroll-behavior: contain"],
+    div[style*="overflow:auto"][style*="overscroll-behavior: contain"]
+  )::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #93ea68 0%, #6ebe45 100%);
+  border: 2px solid rgba(15, 23, 42, 0.75);
+  border-radius: 999px;
+}
+
+#redoc-container
+  .menu-content
+  :is(
+    div:has(> ul[role="menu"]),
+    div[style*="overflow: auto"][style*="overscroll-behavior: contain"],
+    div[style*="overflow:auto"][style*="overscroll-behavior: contain"]
+  )::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a3f57a 0%, #7ed957 100%);
+}
+
+#redoc-container
+  .api-content
+  :is(
+    .react-tabs__tab-panel,
+    .react-tabs__tab-panel pre,
+    .react-tabs__tab-panel .redoc-json,
+    .react-tabs__tab-panel [style*="overflow-x: auto"],
+    .react-tabs__tab-panel [style*="overflow-x:auto"],
+    .react-tabs__tab-panel [style*="overflow: auto"],
+    .react-tabs__tab-panel [style*="overflow:auto"]
+  ) {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.75) rgba(9, 14, 24, 0.82);
+}
+
+#redoc-container
+  .api-content
+  :is(
+    .react-tabs__tab-panel,
+    .react-tabs__tab-panel pre,
+    .react-tabs__tab-panel .redoc-json,
+    .react-tabs__tab-panel [style*="overflow-x: auto"],
+    .react-tabs__tab-panel [style*="overflow-x:auto"],
+    .react-tabs__tab-panel [style*="overflow: auto"],
+    .react-tabs__tab-panel [style*="overflow:auto"]
+  )::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+#redoc-container
+  .api-content
+  :is(
+    .react-tabs__tab-panel,
+    .react-tabs__tab-panel pre,
+    .react-tabs__tab-panel .redoc-json,
+    .react-tabs__tab-panel [style*="overflow-x: auto"],
+    .react-tabs__tab-panel [style*="overflow-x:auto"],
+    .react-tabs__tab-panel [style*="overflow: auto"],
+    .react-tabs__tab-panel [style*="overflow:auto"]
+  )::-webkit-scrollbar-track {
+  background: rgba(9, 14, 24, 0.82);
+  border-radius: 999px;
+}
+
+#redoc-container
+  .api-content
+  :is(
+    .react-tabs__tab-panel,
+    .react-tabs__tab-panel pre,
+    .react-tabs__tab-panel .redoc-json,
+    .react-tabs__tab-panel [style*="overflow-x: auto"],
+    .react-tabs__tab-panel [style*="overflow-x:auto"],
+    .react-tabs__tab-panel [style*="overflow: auto"],
+    .react-tabs__tab-panel [style*="overflow:auto"]
+  )::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(148, 163, 184, 0.72) 0%,
+    rgba(100, 116, 139, 0.82) 100%
+  );
+  border: 2px solid rgba(9, 14, 24, 0.82);
+  border-radius: 999px;
+}
+
+#redoc-container
+  .api-content
+  :is(
+    .react-tabs__tab-panel,
+    .react-tabs__tab-panel pre,
+    .react-tabs__tab-panel .redoc-json,
+    .react-tabs__tab-panel [style*="overflow-x: auto"],
+    .react-tabs__tab-panel [style*="overflow-x:auto"],
+    .react-tabs__tab-panel [style*="overflow: auto"],
+    .react-tabs__tab-panel [style*="overflow:auto"]
+  )::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(203, 213, 225, 0.82) 0%,
+    rgba(148, 163, 184, 0.9) 100%
+  );
+}
+
+#redoc-container .menu-content ul[role="menu"] li,
+#redoc-container .menu-content ul[role="menu"] li > label,
+#redoc-container .menu-content ul[role="menu"] li > a,
+#redoc-container .menu-content ul[role="menu"] li > button,
+#redoc-container .menu-content ul[role="menu"] li > div {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+}
+
+#redoc-container .menu-content ul[role="menu"] li > label.-depth0 > span {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.04em !important;
+  margin-bottom: 5px;
+}
+
+#redoc-container .menu-content ul[role="menu"] li > label > span[tabindex="0"] {
+  display: block !important;
+  min-width: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+#redoc-container .menu-content a[href*="redocly.com"] {
+  display: none !important;
+}
+
+#redoc-container .menu-content div:has(> a[href*="redocly.com"]) {
+  display: none !important;
+}
+
+#redoc-container .menu-content input {
+  background: #0f172a !important;
+  border: 1px solid #4f7f37 !important;
+  border-radius: 8px !important;
+  color: #e5e7eb !important;
+  padding: 10px 12px !important;
+}
+
+#redoc-container .menu-content input::placeholder {
+  color: #9abe8a !important;
+}
+
+#redoc-container .menu-content [role="search"] {
+  margin-bottom: 12px !important;
+  position: relative;
+}
+
+#redoc-container .menu-content .search-input {
+  padding-left: 44px !important;
+  padding-right: 40px !important;
+}
+
+#redoc-container .menu-content .search-icon {
+  left: 44px !important;
+  height: 14px !important;
+  pointer-events: none;
+  position: absolute !important;
+  top: 24px !important;
+  transform: translateY(-50%) !important;
+  width: 14px !important;
+  z-index: 2;
+}
+
+#redoc-container .menu-content .search-icon path {
+  fill: #9abe8a !important;
+}
+
+#redoc-container .menu-content [role="search"] > i {
+  background: rgba(148, 163, 184, 0.24) !important;
+  border: 1px solid rgba(148, 163, 184, 0.45) !important;
+  border-radius: 999px !important;
+  color: #f8fafc !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  height: 20px !important;
+  line-height: 18px !important;
+  right: 40px !important;
+  text-align: center !important;
+  top: 24px !important;
+  transform: translateY(-50%) !important;
+  width: 20px !important;
+  z-index: 2;
+}
+
+#redoc-container .api-content .react-tabs__tab-panel {
+  background: #111827 !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  border-radius: 10px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+#redoc-container .api-content .react-tabs__tab-panel pre,
+#redoc-container .api-content .react-tabs__tab-panel .redoc-json {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#redoc-container [data-rttabs="true"] > .react-tabs__tab-panel,
+#redoc-container [data-rttabs="true"] .react-tabs__tab-panel {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.97) 0%,
+    rgba(9, 14, 24, 0.97) 100%
+  ) !important;
+  border: 1px solid var(--app-border) !important;
+  border-radius: 18px !important;
+  box-shadow:
+    0 20px 70px rgba(2, 8, 23, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+
+#redoc-container [data-rttabs="true"] .react-tabs__tab-panel pre,
+#redoc-container [data-rttabs="true"] .react-tabs__tab-panel .redoc-json {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#redoc-container .http-verb,
+#redoc-container .operation-type {
+  border-radius: 8px !important;
+}
+
+#redoc-container .menu-content .operation-type,
+#redoc-container .menu-content .http-verb {
+  align-items: center !important;
+  border-radius: 4px !important;
+  /* color: #111827 !important; */
+  display: inline-flex !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  height: 16px !important;
+  justify-content: center !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1 !important;
+  min-width: 40px !important;
+  padding: 0 6px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+#redoc-container button,
+#redoc-container [role="button"],
+#redoc-container select,
+#redoc-container .openapi-button,
+#redoc-container input[type="button"],
+#redoc-container input[type="submit"] {
+  border-radius: 8px !important;
+}
+
+#redoc-container .openapi-button,
+#redoc-container .react-tabs__tab,
+#redoc-container .react-tabs__tab-panel button {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  div:has(> :is(button, [role="button"]):has(> div:only-child) + :is(button, [role="button"])) {
+  align-items: center !important;
+  display: inline-flex !important;
+  gap: 6px !important;
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child) {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  flex: 0 0 32px !important;
+  padding: 0 !important;
+  position: relative;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  svg {
+  display: none !important;
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  > div:only-child {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 16px !important;
+  height: 16px !important;
+  color: transparent !important;
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  > div:only-child
+  > * {
+  color: #e2e8f0 !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  > div:only-child::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgaWQ9IlNWR1JlcG9fYmdDYXJyaWVyIiBzdHJva2Utd2lkdGg9IjAiPjwvZz48ZyBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvZz48ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+PHBhdGggZD0iTTE2IDEyLjlWMTcuMUMxNiAyMC42IDE0LjYgMjIgMTEuMSAyMkg2LjlDMy40IDIyIDIgMjAuNiAyIDE3LjFWMTIuOUMyIDkuNCAzLjQgOCA2LjkgOEgxMS4xQzE0LjYgOCAxNiA5LjQgMTYgMTIuOVoiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48cGF0aCBkPSJNMTcuMDk5OCAySDEyLjg5OThDOS44MTY2OCAyIDguMzcwNzQgMy4wOTQwOSA4LjA2OTUxIDUuNzM5MDFDOC4wMDY0OSA2LjI5MjM1IDguNDY0NzYgNi43NSA5LjAyMTY3IDYuNzVIMTEuMDk5OEMxNS4yOTk4IDYuNzUgMTcuMjQ5OCA4LjcgMTcuMjQ5OCAxMi45VjE0Ljk3ODFDMTcuMjQ5OCAxNS41MzUgMTcuNzA3NCAxNS45OTMzIDE4LjI2MDggMTUuOTMwM0MyMC45MDU3IDE1LjYyOSAyMS45OTk4IDE0LjE4MzEgMjEuOTk5OCAxMS4xVjYuOUMyMS45OTk4IDMuNCAyMC41OTk4IDIgMTcuMDk5OCAyWiIgZmlsbD0iI2ZmZmZmZiI+PC9wYXRoPjwvZz48L3N2Zz4=");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  + :is(button, [role="button"]),
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  + :is(button, [role="button"])
+  + :is(button, [role="button"]) {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  flex: 0 0 32px !important;
+  padding: 0 !important;
+  position: relative;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  text-indent: -9999px !important;
+  white-space: nowrap !important;
+  overflow: hidden;
+      top: -5px;
+    position: relative;
+
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  + :is(button, [role="button"])::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgaWQ9IlNWR1JlcG9fYmdDYXJyaWVyIiBzdHJva2Utd2lkdGg9IjAiPjwvZz48ZyBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvZz48ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+PHBhdGggZD0iTTMuMDQ5NTMgMTkuODcxM0MzLjMzOTUzIDIwLjI5MTMgMy43MDk1MyAyMC42NjEzIDQuMTI5NTMgMjAuOTUxM0M1LjA3OTUzIDIxLjY0MTMgNi4zMTk1MyAyMi4wMDEyIDcuODA5NTMgMjIuMDAxMkgxNi4xODk1QzE5LjYyOTUgMjIuMDAxMiAyMS43NTk1IDIwLjA2MTIgMjEuOTY5NSAxNi43ODEySDIuMDE5NTNDMi4wOTk1MyAxOC4wMTEzIDIuNDQ5NTMgMTkuMDUxMyAzLjA0OTUzIDE5Ljg3MTNaIiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTIwLjk1IDQuMTNDMjAuNjYgMy43MSAyMC4yOSAzLjM0IDE5Ljg3IDMuMDVDMTguOTIgMi4zNiAxNy42OCAyIDE2LjE5IDJINy44MUM0LjE3IDIgMiA0LjE3IDIgNy44MVYxNS4yOEgyMlY3LjgxQzIyIDYuMzIgMjEuNjQgNS4wOCAyMC45NSA0LjEzWk0xNS4wOSA5LjU2TDEyLjUzIDEyLjEyQzEyLjI0IDEyLjQxIDExLjc2IDEyLjQxIDExLjQ3IDEyLjEyTDguOTEgOS41NkM4Ljc2IDkuNDEgOC42OSA5LjIyIDguNjkgOS4wM0M4LjY5IDguODQgOC43NiA4LjY0IDguOTEgOC41QzkuMiA4LjIgOS42OCA4LjIgOS45NyA4LjVMMTIgMTAuNTJMMTQuMDMgOC40OUMxNC4zMiA4LjIgMTQuOCA4LjIgMTUuMDkgOC40OUMxNS4zOCA4Ljc4IDE1LjM4IDkuMjYgMTUuMDkgOS41NloiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L2c+PC9zdmc+");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+  
+}
+
+#redoc-container
+  .react-tabs__tab-panel
+  :is(button, [role="button"]):has(> div:only-child)
+  + :is(button, [role="button"])
+  + :is(button, [role="button"])::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgaWQ9IlNWR1JlcG9fYmdDYXJyaWVyIiBzdHJva2Utd2lkdGg9IjAiPjwvZz48ZyBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvZz48ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+PHBhdGggZD0iTTIwLjk0OTMgNC4xM0MyMC42NTkzIDMuNzEgMjAuMjg5MyAzLjM0IDE5Ljg2OTMgMy4wNUMxOC45MTkzIDIuMzYgMTcuNjc5MyAyIDE2LjE4OTMgMkg3LjgwOTNDNC4zNjkzIDIgMi4yMzkzIDMuOTQgMi4wMjkzIDcuMjJIMjEuOTc5M0MyMS44OTkzIDUuOTkgMjEuNTQ5MyA0Ljk1IDIwLjk0OTMgNC4xM1oiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48cGF0aCBkPSJNMiAxNi4xODg4QzIgMTcuNjc4OCAyLjM2IDE4LjkxODggMy4wNSAxOS44Njg4QzMuMzQgMjAuMjg4OCAzLjcxIDIwLjY1ODggNC4xMyAyMC45NDg4QzUuMDggMjEuNjM4OCA2LjMyIDIxLjk5ODcgNy44MSAyMS45OTg3SDE2LjE5QzE5LjgzIDIxLjk5ODcgMjIgMTkuODI4OCAyMiAxNi4xODg4VjguNzE4NzVIMlYxNi4xODg4Wk04LjkxIDE0LjQzODdMMTEuNDcgMTEuODc4N0MxMS43NiAxMS41ODg3IDEyLjI0IDExLjU4ODcgMTIuNTMgMTEuODc4N0wxNS4wOSAxNC40Mzg3QzE1LjI0IDE0LjU4ODcgMTUuMzEgMTQuNzc4NyAxNS4zMSAxNC45Njg4QzE1LjMxIDE1LjE1ODggMTUuMjQgMTUuMzQ4NyAxNS4wOSAxNS40OTg3QzE0LjggMTUuNzg4NyAxNC4zMiAxNS43ODg3IDE0LjAzIDE1LjQ5ODdMMTIgMTMuNDc4N0w5Ljk3IDE1LjQ5ODdDOS42OCAxNS43ODg3IDkuMiAxNS43ODg3IDguOTEgMTUuNDk4N0M4LjYyIDE1LjIwODcgOC42MiAxNC43Mzg3IDguOTEgMTQuNDM4N1oiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L2c+PC9zdmc+");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+#redoc-container .api-content .react-tabs__tab-list > li[role="tab"] {
+  align-items: center !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  height: 28px !important;
+  justify-content: center !important;
+  min-width: 98px !important;
+  padding: 0 12px !important;
+}
+
+#redoc-container .api-content button:has(:is(.http-verb, .operation-type)),
+#redoc-container .api-content [role="button"]:has(:is(.http-verb, .operation-type)) {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.97) 0%,
+    rgba(9, 14, 24, 0.97) 100%
+  ) !important;
+  border: 1px solid var(--app-border) !important;
+  /* border-radius: 12px!important; */
+  color: #e5e7eb !important;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease !important;
+}
+
+#redoc-container .api-content button:has(:is(.http-verb, .operation-type)):hover,
+#redoc-container .api-content [role="button"]:has(:is(.http-verb, .operation-type)):hover {
+  border-color: #3b4d67 !important;
+}
+
+#redoc-container .api-content button:has(:is(.http-verb, .operation-type)) :is(span, strong, code):not(.http-verb):not(.operation-type),
+#redoc-container .api-content [role="button"]:has(:is(.http-verb, .operation-type)) :is(span, strong, code):not(.http-verb):not(.operation-type) {
+  color: #e5e7eb !important;
+}
+
+#redoc-container .api-content button:has(:is(.http-verb, .operation-type)) svg,
+#redoc-container .api-content [role="button"]:has(:is(.http-verb, .operation-type)) svg {
+    box-sizing: content-box !important;
+    stroke: currentColor !important;
+    background: #fff !important;
+    border-radius: 999px !important;
+    width: 16px !important;
+    height: 16px !important;
+    color: black;
+    min-width: auto !important;
+    padding: 1px;
+    margin-right: -15px !important;
+}
+
+#redoc-container .api-content button:has(:is(.http-verb, .operation-type)):focus,
+#redoc-container .api-content button:has(:is(.http-verb, .operation-type)):focus-visible,
+#redoc-container .api-content [role="button"]:has(:is(.http-verb, .operation-type)):focus,
+#redoc-container
+  .api-content
+  [role="button"]:has(:is(.http-verb, .operation-type)):focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+#redoc-container .api-content button:has(strong):not(:has(.http-verb)),
+#redoc-container .api-content [role="button"]:has(strong):not(:has(.http-verb)) {
+  align-items: center !important;
+  display: flex !important;
+  gap: 8px !important;
+  line-height: 1.2 !important;
+}
+
+#redoc-container .api-content button:has(strong):not(:has(.http-verb)) strong,
+#redoc-container .api-content button:has(strong):not(:has(.http-verb)) span,
+#redoc-container .api-content [role="button"]:has(strong):not(:has(.http-verb))
+  strong,
+#redoc-container .api-content [role="button"]:has(strong):not(:has(.http-verb))
+  span {
+  align-items: center !important;
+  display: inline-flex !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+}
+
+#redoc-container .api-content button:has(strong):not(:has(.http-verb)) svg,
+#redoc-container .api-content [role="button"]:has(strong):not(:has(.http-verb))
+  svg {
+  flex-shrink: 0 !important;
+}
+
+#redoc-container .api-content table td + td,
+#redoc-container .api-content table th + th {
+  border-bottom: 1px solid #e8e8e8 !important;
+}
+
+#redoc-container .api-content table .property-name {
+  font-weight: 700 !important;
+}
+
+#redoc-container .api-content table td {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+#redoc-container .api-content table td p {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  padding-top:5px;
+}
+
+#redoc-container .api-content h5 {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}

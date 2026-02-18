@@ -1,4 +1,4 @@
-# APIdoki - API Documentation Hub
+# APIdoci - API Documentation Hub
 
 APIdoci is an API documentation hub with login-gated ReDoc, built on Next.js App Router.
 

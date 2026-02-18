@@ -1,6 +1,6 @@
-# API Documentation Hub
+# APIdoki - API Documentation Hub
 
-`api-doci` is an API documentation hub with login-gated ReDoc, built on Next.js App Router.
+APIdoci is an API documentation hub with login-gated ReDoc, built on Next.js App Router.
 
 ## Tech stack
 

@@ -338,6 +338,14 @@ body {
   text-overflow: ellipsis !important;
   word-break: normal !important;
   overflow-wrap: normal !important;
+  font-size: 13px;
+}
+
+#redoc-container .menu-content ul[role="menu"] li > label.-depth2,
+#redoc-container .menu-content ul[role="menu"] li > label.-depth3,
+#redoc-container .menu-content ul[role="menu"] li > label.-depth4,
+#redoc-container .menu-content ul[role="menu"] li > label.-depth5 {
+  padding-left: 42px !important;
 }
 
 #redoc-container .menu-content a[href*="redocly.com"] {
@@ -454,7 +462,7 @@ body {
   /* color: #111827 !important; */
   display: inline-flex !important;
   font-size: 8px !important;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
   height: 16px !important;
   justify-content: center !important;
   letter-spacing: 0.03em !important;
@@ -622,6 +630,7 @@ body {
   justify-content: center !important;
   min-width: 98px !important;
   padding: 0 12px !important;
+  cursor: default;
 }
 
 #redoc-container .api-content button:has(:is(.http-verb, .operation-type)),
@@ -714,13 +723,34 @@ body {
   line-height: 1.4 !important;
 }
 
-#redoc-container .api-content table td p {
+#redoc-container .api-content table table th,
+#redoc-container .api-content table table td {
   font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+#redoc-container .api-content table td p {
+  font-size: 12px !important;
   line-height: 1.4 !important;
-  padding-top:5px;
+  padding-top:8px;
+  line-height: 1.6 !important;
 }
 
 #redoc-container .api-content h5 {
   font-size: 13px !important;
   font-weight: 700 !important;
+}
+#redoc-container .api-content h3 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+#redoc-container .api-content a {
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+#redoc-container .api-content a:hover {
+  text-decoration-thickness: 2px;
 }

@@ -78,8 +78,8 @@ const redocOptions = {
       textColor: "#E5E7EB"
     },
     typography: {
-      fontSize: "16px",
-      lineHeight: "1.7em",
+      fontSize: "14px",
+      lineHeight: "1.5em",
       fontFamily: "Inter, sans-serif",
       fontWeightRegular: "400",
       fontWeightBold: "700",
@@ -98,6 +98,7 @@ const redocOptions = {
       sectionVertical: 24
     },
     schema: {
+      linesColor: "#E8E8E8",
       typeNameColor: "#808080",
       typeTitleColor: "#111827"
     },

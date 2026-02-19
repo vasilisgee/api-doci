@@ -69,27 +69,36 @@ export function LoginForm({ minSubmitMs }: LoginFormProps) {
     }
 
     reasonToastShownRef.current = true;
+    const toastPayload =
+      reason === "inactive" || reason === "expired"
+        ? {
+            type: "error" as const,
+            title: "Session expired",
+            description: "Please sign in again.",
+            duration: Infinity,
+            meta: {
+              icon: "logout"
+            }
+          }
+        : reason === "unauthorized"
+          ? {
+              type: "error" as const,
+              title: "Authentication required",
+              description: "Please sign in to continue."
+            }
+          : null;
 
-    if (reason === "inactive" || reason === "expired") {
-      toaster.create({
-        type: "error",
-        title: "Session expired",
-        description: "Please sign in again.",
-        duration: Infinity,
-        meta: {
-          icon: "logout"
-        }
-      });
+    if (!toastPayload) {
       return;
     }
 
-    if (reason === "unauthorized") {
-      toaster.create({
-        type: "error",
-        title: "Authentication required",
-        description: "Please sign in to continue."
-      });
-    }
+    const timerId = window.setTimeout(() => {
+      toaster.create(toastPayload);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timerId);
+    };
   }, [searchParams]);
 
   const onSubmit = handleSubmit(async (values) => {

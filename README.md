@@ -6,7 +6,7 @@
 ![Chakra UI](https://img.shields.io/badge/Chakra_UI-319795?style=flat&logo=chakraui&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
 
-A documentation hub for sharing API specs with authorized users only. Users log in with their credentials, and once verified they get access to a custom-themed ReDoc interface. The spec itself is never publicly accessible.
+A documentation hub for sharing API specs with authorized users only. Users log in with their credentials, and once verified they get access to a custom-themed ReDoc interface.
 
 🔗 [api-doci.vercel.app](https://api-doci.vercel.app)
 

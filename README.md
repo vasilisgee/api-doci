@@ -23,8 +23,11 @@ When a user logs in, the credentials are verified against an external auth API. 
 The OpenAPI spec is never exposed publicly. It's served through `/api/spec`, which only responds to authenticated requests. The spec source is configurable via `OPENAPI_SPEC_SOURCE` and supports both a local file path and a remote URL, falling back to a bundled demo spec when unset.
 
 ## Screenshots
- 
-> Coming soon.
+<p>
+  <img src="public/screenshots/screenshot-1.png" width="270" />
+  <img src="public/screenshots/screenshot-2.png" width="270" />
+  <img src="public/screenshots/screenshot-3.png" width="270" />
+</p>
 
 ## Tech Stack
 
